@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.1",
-    "@astrojs/db": "^0.21.1",
     "@google/generative-ai": "^0.24.1",
+    "@libsql/client": "^0.17.3",
     "@tailwindcss/vite": "^4.3.0",
     "amqplib": "^2.0.1",
     "astro": "^6.3.1",
