@@ -1,0 +1,65 @@
+import { createClient } from "@libsql/client";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import "../styles/global.css";
+
+import { createClient } from "@libsql/client";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+// 1. Initialize Turso
+const turso = createClient({
+    url: import.meta.env.TURSO_DATABASE_URL,
+    authToken: import.meta.env.TURSO_AUTH_TOKEN,
+});
+
+// 2. Initialize Google Gen AI
+const genAI = new GoogleGenerativeAI(import.meta.env.GEN_AI_KEY);
+
+// 3. Correct model name
+const model = genAI.getGenerativeModel({
+    model: "gemma-4-31b-it",
+});
+
+let statusMessage = "";
+
+try {
+    const prompt = `
+Write a 2000 word SEO article on Roofing.
+
+Guidelines:
+- The content length should reflect the complexity of the topic
+- Use smooth logical progression
+- Use proper H2 and H3 structure
+- Avoid keyword stuffing
+- Keep language simple and readable
+- Focus on user intent
+- Use local references sparingly
+- Do not use em dashes
+- Use creative metaphors in plain English
+- Include a quirky story for variety
+`;
+
+    // 4. Generate content
+    const result = await model.generateContent(prompt);
+
+    // 5. Correct text extraction
+    const aiResponse = result.response.text();
+
+    // 6. Save to Turso
+    await turso.execute({
+        sql: `
+      INSERT INTO Articles (
+        Written,
+        Content
+      ) VALUES (?, ?)
+    `,
+        args: [1, aiResponse],
+    });
+
+    statusMessage = "Gemma generated content and saved it to Turso.";
+
+    console.log("✅ Success");
+} catch (error) {
+    statusMessage = `Error: ${error.message}`;
+    console.error("❌ System Error:", error);
+}
+---

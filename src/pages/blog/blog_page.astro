@@ -1,0 +1,64 @@
+---
+// src/pages/blog/[slug].astro
+import { createClient } from "@libsql/client";
+import { marked } from "marked";
+import "../../styles/global.css"; // Ensure your v4 CSS file is imported
+
+// 1. Fetch the LLM markdown from Turso
+const turso = createClient({
+    url: import.meta.env.TURSO_DATABASE_URL,
+    authToken: import.meta.env.TURSO_AUTH_TOKEN,
+});
+
+const { rows } = await turso.execute({
+    sql: "SELECT Content FROM Articles WHERE id = ?",
+    args: [9],
+});
+
+// 2. Parse the markdown string into raw HTML
+const rawMarkdown = rows[0].Content;
+const htmlContent = marked.parse(rawMarkdown);
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="utf-8" />
+        <title>OrbitOps Blog</title>
+    </head>
+    <body class="bg-black text-white antialiased">
+        <main class="mx-auto max-w-3xl px-5 py-24 sm:px-8 lg:py-32">
+            <header class="mb-14 border-b border-white/10 pb-10">
+                <p
+                    class="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-ember-300"
+                >
+                    Industry Guide
+                </p>
+                <h1
+                    class="text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl"
+                >
+                    The Ultimate Guide to Modern Roofing
+                </h1>
+            </header>
+
+            <article
+                class="prose prose-invert max-w-none
+          prose-p:text-white/60 prose-p:leading-8 prose-p:text-lg
+          prose-strong:text-white prose-strong:font-semibold
+         prose-headings:text-ember-600 prose-headings:tracking-tight prose-headings:font-semibold
+          prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:border-b prose-h2:border-white/10 prose-h2:pb-4
+          prose-h3:text-2xl prose-h3:mt-10
+          prose-a:text-ember-500 prose-a:font-medium prose-a:no-underline hover:prose-a:underline hover:prose-a:decoration-ember-500/50
+          prose-ul:text-white/60 prose-ul:list-disc
+          prose-li:marker:text-ember-500
+          prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:text-white/80
+          prose-blockquote:border-l-4 prose-blockquote:border-ember-500
+          prose-blockquote:bg-white/[0.035] prose-blockquote:rounded-r-[2rem]
+          prose-blockquote:px-8 prose-blockquote:py-4
+          prose-code:text-ember-300 prose-code:bg-white/[0.05] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md
+          prose-code:before:hidden prose-code:after:hidden"
+                set:html={htmlContent}
+            />
+        </main>
+    </body>
+</html>

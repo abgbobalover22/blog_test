@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfolio Template</title>
+
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+        <style type="text/tailwindcss">
+            @theme {
+                --color-bg: #050505;
+                --color-panel: #0f1117;
+                --color-line: #1d2230;
+                --color-primary: #f5a300;
+                --color-accent: #7c3aed;
+                --color-text: #f5f5f5;
+                --color-muted: #9ca3af;
+            }
+
+            body {
+                background:
+                    radial-gradient(
+                        circle at top,
+                        rgba(124, 58, 237, 0.15),
+                        transparent 40%
+                    ),
+                    repeating-linear-gradient(
+                        to right,
+                        #07090f 0px,
+                        #07090f 2px,
+                        #050505 2px,
+                        #050505 18px
+                    );
+            }
+
+            @layer components {
+                /* Brush Highlight */
+                .brush {
+                    position: relative;
+                    display: inline-block;
+                    z-index: 0;
+                }
+
+                .brush::before {
+                    content: "";
+                    position: absolute;
+
+                    inset: 58% -0.25em 0.02em -0.25em;
+
+                    background: linear-gradient(
+                        90deg,
+                        rgba(168, 85, 247, 0.95),
+                        rgba(236, 72, 153, 0.95)
+                    );
+
+                    border-radius: 0.45em 0.2em 0.5em 0.25em;
+
+                    transform: rotate(-2deg) skewX(-12deg);
+
+                    filter: blur(1px);
+
+                    box-shadow:
+                        0 0 8px rgba(236, 72, 153, 0.45),
+                        0 0 2px rgba(168, 85, 247, 0.8);
+
+                    z-index: -1;
+                }
+
+                /* Slanted Heading Accent */
+                .slant {
+                    display: inline-block;
+                    transform: skewX(-12deg) rotate(-1deg);
+                }
+
+                .slant > span {
+                    display: inline-block;
+                    transform: skewX(12deg);
+                }
+            }
+        </style>
+    </head>
+
+    <body class="text-white min-h-screen font-sans">
+        <div class="max-w-5xl mx-auto px-6 py-10">
+            <!-- Logo -->
+            <div class="flex justify-center mb-8">
+                <div
+                    class="bg-[#ff6a57] rounded-2xl px-10 py-4 shadow-[0_0_40px_rgba(255,106,87,.45)]"
+                >
+                    <span class="text-5xl italic font-black text-white">
+                        w
+                    </span>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <div
+                class="bg-panel/90 backdrop-blur border border-line rounded-xl px-5 py-3 mb-8 flex items-center justify-between shadow-xl"
+            >
+                <span class="text-sm tracking-[0.25em] uppercase text-gray-300">
+                    Main Menu
+                </span>
+
+                <span class="text-gray-500">></span>
+            </div>
+
+            <!-- HERO -->
+            <section class="mb-14">
+                <h1
+                    class="text-5xl md:text-6xl font-black text-primary tracking-tight mb-6"
+                >
+                    <span class="slant">
+                        <span># Portfolio</span>
+                    </span>
+                </h1>
+
+                <p class="text-lg text-gray-300 leading-relaxed max-w-4xl">
+                    The following is a cross-section of remarkable
+
+                    <span class="brush font-bold text-white">
+                        software & creative projects
+                    </span>
+
+                    I’m currently working on as well as some of the clients I’ve
+                    collaborated with over the years to develop meaningful
+                    products & services.
+                </p>
+
+                <p class="mt-6 text-gray-400 leading-relaxed max-w-4xl">
+                    To learn more about my specific skillset, read the technical
+                    acumen section in the iFaq or review my professional CV.
+                </p>
+            </section>
+
+            <!-- SECTION -->
+            <section class="mb-14">
+                <h2 class="text-4xl md:text-5xl font-black text-primary mb-7">
+                    <span class="slant">
+                        <span>## Open Source Software</span>
+                    </span>
+                </h2>
+
+                <!-- FEATURE CARD -->
+                <div
+                    class="bg-panel/95 border border-line rounded-2xl p-6 shadow-[0_0_35px_rgba(0,0,0,.45)] backdrop-blur"
+                >
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">
+                                Bridgetown ::
+
+                                <span class="text-gray-400">
+                                    Ruby Web Framework
+                                </span>
+                            </h3>
+
+                            <p class="text-gray-300 leading-relaxed">
+                                Built for an HTML-first, “vanilla” web paradigm
+                                on the foundational tech of Ruby, Roda, and
+                                esbuild, Bridgetown puts power back in the hands
+                                of individuals to create extraordinary things.
+                            </p>
+
+                            <a
+                                href="#"
+                                class="inline-block mt-5 text-pink-400 hover:text-pink-300 transition"
+                            >
+                                Learn more →
+                            </a>
+
+                            <!-- TAGS -->
+                            <div class="flex flex-wrap gap-3 mt-6">
+                                <span
+                                    class="bg-green-500/15 text-green-400 text-sm px-3 py-1 rounded-full border border-green-500/30 backdrop-blur"
+                                >
+                                    Ruby programming
+                                </span>
+
+                                <span
+                                    class="bg-green-500/15 text-green-400 text-sm px-3 py-1 rounded-full border border-green-500/30"
+                                >
+                                    Full-stack architecture
+                                </span>
+
+                                <span
+                                    class="bg-green-500/15 text-green-400 text-sm px-3 py-1 rounded-full border border-green-500/30"
+                                >
+                                    Open source governance
+                                </span>
+                            </div>
+                        </div>
+
+                        <button class="text-gray-500 text-2xl">⌄</button>
+                    </div>
+                </div>
+
+                <!-- MINI CARDS -->
+                <div class="mt-4 space-y-3">
+                    <div
+                        class="bg-panel/90 border border-line rounded-xl px-5 py-4 flex justify-between items-center hover:border-violet-500/40 transition"
+                    >
+                        <span class="font-semibold">
+                            Serbea ::
+
+                            <span class="text-gray-400">
+                                Expressive Template Language
+                            </span>
+                        </span>
+
+                        <span class="text-gray-500">></span>
+                    </div>
+
+                    <div
+                        class="bg-panel/90 border border-line rounded-xl px-5 py-4 flex justify-between items-center hover:border-violet-500/40 transition"
+                    >
+                        <span class="font-semibold">
+                            Heartml ::
+
+                            <span class="text-gray-400">
+                                Web Component Helpers
+                            </span>
+                        </span>
+
+                        <span class="text-gray-500">></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION -->
+            <section class="mb-14">
+                <h2 class="text-4xl md:text-5xl font-black text-primary mb-7">
+                    <span class="slant">
+                        <span>## Frontend & Fullstack Architecture</span>
+                    </span>
+                </h2>
+
+                <div
+                    class="bg-panel/95 border border-line rounded-2xl p-6 shadow-[0_0_35px_rgba(0,0,0,.45)]"
+                >
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">
+                                Bloom Housing ::
+
+                                <span class="text-gray-400">
+                                    Seeds Design System
+                                </span>
+                            </h3>
+
+                            <p class="text-gray-300 leading-relaxed">
+                                The Seeds design system was developed to provide
+                                web-native and flexible, lightweight components
+                                with CSS-based theming.
+                            </p>
+
+                            <div class="flex flex-wrap gap-3 mt-6">
+                                <span
+                                    class="bg-cyan-500/15 text-cyan-400 text-sm px-3 py-1 rounded-full border border-cyan-500/30"
+                                >
+                                    CSS tokens
+                                </span>
+
+                                <span
+                                    class="bg-cyan-500/15 text-cyan-400 text-sm px-3 py-1 rounded-full border border-cyan-500/30"
+                                >
+                                    UI components
+                                </span>
+
+                                <span
+                                    class="bg-cyan-500/15 text-cyan-400 text-sm px-3 py-1 rounded-full border border-cyan-500/30"
+                                >
+                                    Themable interface
+                                </span>
+                            </div>
+                        </div>
+
+                        <button class="text-gray-500 text-2xl">⌄</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="border-t border-line pt-10 text-center">
+                <div
+                    class="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-violet-500/40 text-sm text-gray-300 shadow-[0_0_20px_rgba(124,58,237,.2)]"
+                >
+                    All the ways to take Jared for a ride
+                </div>
+
+                <p class="mt-8 text-sm text-gray-500 leading-relaxed">
+                    Designed & developed with ♥ in Portland, Oregon.
+                    <br />
+                    HTML/CSS utilities & web components courtesy of Web Awesome.
+                </p>
+            </footer>
+        </div>
+    </body>
+</html>

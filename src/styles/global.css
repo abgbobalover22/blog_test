@@ -1,0 +1,52 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+    /* Fonts */
+    --font-sans:
+        "Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Arial",
+        "sans-serif";
+
+    /* Colors (ember) */
+    --color-ember-50: #fff7ed;
+    --color-ember-100: #ffedd5;
+    --color-ember-200: #fed7aa;
+    --color-ember-300: #fdba74;
+    --color-ember-400: #fb923c;
+    --color-ember-500: #f97316;
+    --color-ember-600: #ea580c;
+    --color-ember-700: #c2410c;
+    --color-ember-900: #7c2d12;
+
+    /* Shadows */
+    --shadow-glow: 0 0 80px rgba(249, 115, 22, 0.28);
+    --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.45);
+
+    /* Background Images */
+    --background-image-radial-orange: radial-gradient(
+        circle at 50% 0%,
+        rgba(249, 115, 22, 0.4),
+        transparent 34rem
+    );
+    --background-image-radial-slate: radial-gradient(
+        circle at 50% 20%,
+        rgba(148, 163, 184, 0.16),
+        transparent 36rem
+    );
+}
+
+/* Your existing custom utility classes */
+.noise:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    z-index: 80;
+}
+
+.mask-fade {
+    -webkit-mask-image: linear-gradient(to bottom, black 68%, transparent);
+    mask-image: linear-gradient(to bottom, black 68%, transparent);
+}
